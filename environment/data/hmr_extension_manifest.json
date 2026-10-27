@@ -1,0 +1,13 @@
+{
+  "phase": "transactional-hmr-lineage",
+  "starts_after_seq": 502,
+  "seq_min": 503,
+  "seq_max": 584,
+  "records": 82,
+  "first_checkpoint": "cp88",
+  "last_checkpoint": "cp107",
+  "catalog": "hmr_module_catalog.json",
+  "stream": "hmr_session.jsonl",
+  "contract": "hmr_contract.md",
+  "note": "All earlier capture, observer, event, and render evidence is preserved unchanged. This phase continues the same browser session and has no answer-bearing final snapshot."
+}

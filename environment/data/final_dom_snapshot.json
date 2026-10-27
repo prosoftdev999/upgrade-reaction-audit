@@ -1,0 +1,447 @@
+{
+  "nodes": [
+    {
+      "uid": "b1",
+      "kind": "element",
+      "local_name": "x-badge",
+      "owner_doc": "doc_main",
+      "parent_uid": "p1",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "level": "3",
+        "tone": "violet"
+      }
+    },
+    {
+      "uid": "b2",
+      "kind": "element",
+      "local_name": "x-badge",
+      "owner_doc": "doc_main",
+      "parent_uid": "shadow_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "level": "2",
+        "tone": "amber"
+      }
+    },
+    {
+      "uid": "b3",
+      "kind": "element",
+      "local_name": "x-badge",
+      "owner_doc": "doc_main",
+      "parent_uid": "shadow_p3",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "tone": "red",
+        "level": "12"
+      }
+    },
+    {
+      "uid": "b4",
+      "kind": "element",
+      "local_name": "x-badge",
+      "owner_doc": "doc_preview",
+      "parent_uid": "host_preview",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "tone": "silver",
+        "level": "4"
+      }
+    },
+    {
+      "uid": "bm1",
+      "kind": "element",
+      "local_name": "x-bridge",
+      "owner_doc": "doc_preview",
+      "parent_uid": "hard_preview",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "bridge-main",
+        "peer": "relay-shared",
+        "mode": "final-main",
+        "status": "mounted:pm1",
+        "data-note": "not-observed"
+      }
+    },
+    {
+      "uid": "bm2",
+      "kind": "element",
+      "local_name": "x-bridge",
+      "owner_doc": "doc_main",
+      "parent_uid": "shadow_hard_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "bridge-alt",
+        "peer": "relay-alt",
+        "mode": "connected:bm2",
+        "status": "echo:echo:shadow-wave"
+      }
+    },
+    {
+      "uid": "bm3",
+      "kind": "element",
+      "local_name": "x-bridge",
+      "owner_doc": "doc_main",
+      "parent_uid": "hard_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "bridge-late",
+        "peer": "relay-shared",
+        "mode": "after-flip-b"
+      }
+    },
+    {
+      "uid": "bp1",
+      "kind": "element",
+      "local_name": "x-bridge",
+      "owner_doc": "doc_preview",
+      "parent_uid": "hard_preview",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "bridge-main",
+        "peer": "relay-shared",
+        "mode": "preview-wave",
+        "theme": "phase:hot",
+        "status": "pv-echo:pv-adopt:doc_main"
+      }
+    },
+    {
+      "uid": "hard_main",
+      "kind": "element",
+      "local_name": "section",
+      "owner_doc": "doc_main",
+      "parent_uid": "root_main",
+      "host_uid": null,
+      "shadow_root_uid": "shadow_hard_main",
+      "attrs": {
+        "data-role": "hard-main-host"
+      }
+    },
+    {
+      "uid": "hard_preview",
+      "kind": "element",
+      "local_name": "article",
+      "owner_doc": "doc_preview",
+      "parent_uid": "root_preview",
+      "host_uid": null,
+      "shadow_root_uid": "shadow_hard_preview",
+      "attrs": {
+        "data-role": "hard-preview-host"
+      }
+    },
+    {
+      "uid": "host_main",
+      "kind": "element",
+      "local_name": "section",
+      "owner_doc": "doc_main",
+      "parent_uid": "root_main",
+      "host_uid": null,
+      "shadow_root_uid": "shadow_main",
+      "attrs": {}
+    },
+    {
+      "uid": "host_preview",
+      "kind": "element",
+      "local_name": "article",
+      "owner_doc": "doc_preview",
+      "parent_uid": "root_preview",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {}
+    },
+    {
+      "uid": "m1",
+      "kind": "element",
+      "local_name": "x-meter",
+      "owner_doc": "doc_main",
+      "parent_uid": "host_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "value": "5",
+        "max": "10"
+      }
+    },
+    {
+      "uid": "m2",
+      "kind": "element",
+      "local_name": "x-meter",
+      "owner_doc": "doc_main",
+      "parent_uid": "p3",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "value": "2",
+        "max": "8"
+      }
+    },
+    {
+      "uid": "p1",
+      "kind": "element",
+      "local_name": "x-panel",
+      "owner_doc": "doc_main",
+      "parent_uid": "p3",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-mode": "preview-placement",
+        "data-theme": "still-ignored"
+      }
+    },
+    {
+      "uid": "p2",
+      "kind": "element",
+      "local_name": "x-panel",
+      "owner_doc": "doc_preview",
+      "parent_uid": "host_preview",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-mode": "wide",
+        "data-theme": "dusk-2"
+      }
+    },
+    {
+      "uid": "p3",
+      "kind": "element",
+      "local_name": "x-panel",
+      "owner_doc": "doc_main",
+      "parent_uid": "root_main",
+      "host_uid": null,
+      "shadow_root_uid": "shadow_p3",
+      "attrs": {
+        "data-theme": "forest",
+        "open": ""
+      }
+    },
+    {
+      "uid": "p4",
+      "kind": "element",
+      "local_name": "x-panel",
+      "owner_doc": "doc_preview",
+      "parent_uid": null,
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-theme": "sand"
+      }
+    },
+    {
+      "uid": "p5",
+      "kind": "element",
+      "local_name": "x-panel",
+      "owner_doc": "doc_main",
+      "parent_uid": "host_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-mode": "new"
+      }
+    },
+    {
+      "uid": "p6",
+      "kind": "element",
+      "local_name": "x-panel",
+      "owner_doc": "doc_preview",
+      "parent_uid": "host_preview",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-theme": "late-2",
+        "open": "",
+        "data-mode": "unobserved-preview"
+      }
+    },
+    {
+      "uid": "pm1",
+      "kind": "element",
+      "local_name": "x-portal",
+      "owner_doc": "doc_main",
+      "parent_uid": "shadow_hard_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "portal-shared",
+        "target": "bridge-main",
+        "state": "final-route",
+        "echo": "echo:relay-connected:rm1"
+      }
+    },
+    {
+      "uid": "pm2",
+      "kind": "element",
+      "local_name": "x-portal",
+      "owner_doc": "doc_main",
+      "parent_uid": "pm1",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "portal-alt",
+        "target": "bridge-alt",
+        "state": "connected:bm2",
+        "echo": "echo:shadow-wave"
+      }
+    },
+    {
+      "uid": "pp1",
+      "kind": "element",
+      "local_name": "x-portal",
+      "owner_doc": "doc_preview",
+      "parent_uid": "shadow_hard_preview",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "portal-shared",
+        "target": "bridge-main",
+        "phase": "hot",
+        "echo": "pv-adopt:doc_main",
+        "state": "preview-wave"
+      }
+    },
+    {
+      "uid": "rm1",
+      "kind": "element",
+      "local_name": "x-relay",
+      "owner_doc": "doc_main",
+      "parent_uid": "hard_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "relay-shared",
+        "sink": "portal-shared",
+        "pulse": "final-main",
+        "route": "connected:bm3"
+      }
+    },
+    {
+      "uid": "rm2",
+      "kind": "element",
+      "local_name": "x-relay",
+      "owner_doc": "doc_main",
+      "parent_uid": "pm1",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "relay-alt",
+        "sink": "portal-alt",
+        "pulse": "connected:bm2",
+        "route": "shadow-wave"
+      }
+    },
+    {
+      "uid": "rp1",
+      "kind": "element",
+      "local_name": "x-relay",
+      "owner_doc": "doc_main",
+      "parent_uid": "shadow_hard_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "data-role": "relay-shared",
+        "sink": "portal-shared",
+        "armed": "no",
+        "pulse": "relay-cross-b",
+        "route": "preview-wave"
+      }
+    },
+    {
+      "uid": "shadow_hard_main",
+      "kind": "shadow_root",
+      "local_name": "#shadow-root",
+      "owner_doc": "doc_main",
+      "parent_uid": null,
+      "host_uid": "hard_main",
+      "shadow_root_uid": null,
+      "attrs": {}
+    },
+    {
+      "uid": "shadow_hard_preview",
+      "kind": "shadow_root",
+      "local_name": "#shadow-root",
+      "owner_doc": "doc_preview",
+      "parent_uid": null,
+      "host_uid": "hard_preview",
+      "shadow_root_uid": null,
+      "attrs": {}
+    },
+    {
+      "uid": "shadow_main",
+      "kind": "shadow_root",
+      "local_name": "#shadow-root",
+      "owner_doc": "doc_main",
+      "parent_uid": null,
+      "host_uid": "host_main",
+      "shadow_root_uid": null,
+      "attrs": {}
+    },
+    {
+      "uid": "shadow_p3",
+      "kind": "shadow_root",
+      "local_name": "#shadow-root",
+      "owner_doc": "doc_preview",
+      "parent_uid": null,
+      "host_uid": "p3",
+      "shadow_root_uid": null,
+      "attrs": {}
+    },
+    {
+      "uid": "t1",
+      "kind": "element",
+      "local_name": "x-token",
+      "owner_doc": "doc_preview",
+      "parent_uid": "p2",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "value": "A",
+        "disabled": "true"
+      }
+    },
+    {
+      "uid": "t2",
+      "kind": "element",
+      "local_name": "x-token",
+      "owner_doc": "doc_main",
+      "parent_uid": "host_main",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "value": "B2",
+        "disabled": "false"
+      }
+    },
+    {
+      "uid": "t3",
+      "kind": "element",
+      "local_name": "x-token",
+      "owner_doc": "doc_preview",
+      "parent_uid": "p4",
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "value": "C",
+        "disabled": ""
+      }
+    },
+    {
+      "uid": "u1",
+      "kind": "element",
+      "local_name": "x-unknown",
+      "owner_doc": "doc_main",
+      "parent_uid": null,
+      "host_uid": null,
+      "shadow_root_uid": null,
+      "attrs": {
+        "state": "raw"
+      }
+    }
+  ]
+}

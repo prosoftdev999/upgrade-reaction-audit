@@ -1,0 +1,694 @@
+{
+  "version": 1,
+  "lane_order": [
+    "micro",
+    "user",
+    "background"
+  ],
+  "sites": [
+    {
+      "chunk": "chunks/runtime-1.js",
+      "source": "src/telemetry.ts",
+      "name": "flushAudit",
+      "module_id": "telemetry",
+      "revision_id": "telemetry.t1",
+      "handler_id": "telemetry.audit"
+    },
+    {
+      "chunk": "chunks/runtime-1.js",
+      "source": "src/bridge.ts",
+      "name": "publishBridge",
+      "module_id": "bridge",
+      "revision_id": "bridge.b1",
+      "handler_id": "bridge.publish"
+    },
+    {
+      "chunk": "chunks/runtime-1.js",
+      "source": "src/theme.ts",
+      "name": "syncTheme",
+      "module_id": "theme",
+      "revision_id": "theme.h1",
+      "handler_id": "theme.sync"
+    },
+    {
+      "chunk": "chunks/runtime-1.js",
+      "source": "src/shell.ts",
+      "name": "flushShell",
+      "module_id": "shell",
+      "revision_id": "shell.s2",
+      "handler_id": "shell.flush"
+    },
+    {
+      "chunk": "chunks/runtime-1.js",
+      "source": "src/telemetry.ts",
+      "name": "routeSample",
+      "module_id": "telemetry",
+      "revision_id": "telemetry.t2",
+      "handler_id": "telemetry.route"
+    },
+    {
+      "chunk": "chunks/runtime-2.js",
+      "source": "src/bridge.ts",
+      "name": "commitLayout",
+      "module_id": "bridge",
+      "revision_id": "bridge.b2",
+      "handler_id": "bridge.layout"
+    },
+    {
+      "chunk": "chunks/runtime-2.js",
+      "source": "src/panel.ts",
+      "name": "panelEcho",
+      "module_id": "panel",
+      "revision_id": "panel.p2",
+      "handler_id": "panel.echo"
+    },
+    {
+      "chunk": "chunks/runtime-2.js",
+      "source": "src/route.ts",
+      "name": "commitRoute",
+      "module_id": "route",
+      "revision_id": "route.r1",
+      "handler_id": "route.commit"
+    },
+    {
+      "chunk": "chunks/runtime-2.js",
+      "source": "src/telemetry.ts",
+      "name": "flushAuditV3",
+      "module_id": "telemetry",
+      "revision_id": "telemetry.t3",
+      "handler_id": "telemetry.audit3"
+    },
+    {
+      "chunk": "chunks/runtime-2.js",
+      "source": "src/shell.ts",
+      "name": "shellInterlock",
+      "module_id": "shell",
+      "revision_id": "shell.s3",
+      "handler_id": "shell.interlock"
+    },
+    {
+      "chunk": "chunks/runtime-3.js",
+      "source": "src/bridge.ts",
+      "name": "publishBridgeV3",
+      "module_id": "bridge",
+      "revision_id": "bridge.b3",
+      "handler_id": "bridge.publish3"
+    },
+    {
+      "chunk": "chunks/runtime-3.js",
+      "source": "src/route.ts",
+      "name": "commitRouteV2",
+      "module_id": "route",
+      "revision_id": "route.r2",
+      "handler_id": "route.commit2"
+    },
+    {
+      "chunk": "chunks/runtime-3.js",
+      "source": "src/telemetry.ts",
+      "name": "flushAuditV4",
+      "module_id": "telemetry",
+      "revision_id": "telemetry.t4",
+      "handler_id": "telemetry.audit4"
+    },
+    {
+      "chunk": "chunks/runtime-3.js",
+      "source": "src/shell.ts",
+      "name": "flushShellV4",
+      "module_id": "shell",
+      "revision_id": "shell.s4",
+      "handler_id": "shell.flush4"
+    },
+    {
+      "chunk": "chunks/runtime-3.js",
+      "source": "src/panel.ts",
+      "name": "panelEchoV3",
+      "module_id": "panel",
+      "revision_id": "panel.p3",
+      "handler_id": "panel.echo3"
+    },
+    {
+      "chunk": "chunks/runtime-4.js",
+      "source": "src/theme.ts",
+      "name": "syncThemeV2",
+      "module_id": "theme",
+      "revision_id": "theme.h2",
+      "handler_id": "theme.sync2"
+    },
+    {
+      "chunk": "chunks/runtime-4.js",
+      "source": "src/metrics.ts",
+      "name": "metricsBeat",
+      "module_id": "metrics",
+      "revision_id": "metrics.m2",
+      "handler_id": "metrics.beat"
+    },
+    {
+      "chunk": "chunks/runtime-4.js",
+      "source": "src/bridge.ts",
+      "name": "publishBridgeV3",
+      "module_id": "bridge",
+      "revision_id": "bridge.b3",
+      "handler_id": "bridge.publish3"
+    },
+    {
+      "chunk": "chunks/runtime-4.js",
+      "source": "src/shell.ts",
+      "name": "flushShellV4",
+      "module_id": "shell",
+      "revision_id": "shell.s4",
+      "handler_id": "shell.flush4"
+    },
+    {
+      "chunk": "chunks/runtime-4.js",
+      "source": "src/route.ts",
+      "name": "commitRouteV2",
+      "module_id": "route",
+      "revision_id": "route.r2",
+      "handler_id": "route.commit2"
+    }
+  ],
+  "handlers": {
+    "telemetry.audit": {
+      "lane": "micro",
+      "job_key": "telemetry-audit",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "state",
+          "value": "trace:{task_id}:{payload}:{revision_id}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        },
+        {
+          "op": "queue_async",
+          "handler_id": "followup.audit",
+          "payload": "follow:{task_id}:{payload}"
+        }
+      ]
+    },
+    "bridge.publish": {
+      "lane": "user",
+      "job_key": "bridge-publish",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 2
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "route",
+          "value": "trace:{task_id}:{payload}:{revision_id}:cap={captured_lane}:live={live_lane}:n={state_count}"
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          },
+          "name": "status",
+          "value": "trace-live:{task_id}:{payload}:{revision_id}"
+        }
+      ]
+    },
+    "theme.sync": {
+      "lane": "background",
+      "job_key": "theme-sync",
+      "coalesce": "keep_first",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "trace-theme:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        },
+        {
+          "op": "shared_mutate",
+          "slot": "theme_bus",
+          "values": {
+            "lane": "trace-{task_id}-{payload}"
+          }
+        }
+      ]
+    },
+    "shell.flush": {
+      "lane": "user",
+      "job_key": "shell-flush",
+      "coalesce": "none",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "trace-shell:{task_id}:{payload}:{revision_id}:n={state_count}"
+        },
+        {
+          "op": "queue_async",
+          "handler_id": "followup.shell",
+          "payload": "shell-follow:{task_id}:{payload}"
+        }
+      ]
+    },
+    "telemetry.route": {
+      "lane": "micro",
+      "job_key": "telemetry-route",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "echo",
+          "value": "trace-route:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        }
+      ]
+    },
+    "bridge.layout": {
+      "lane": "user",
+      "job_key": "bridge-layout",
+      "coalesce": "none",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "pulse",
+          "value": "trace-layout:{task_id}:{payload}:n={state_count}"
+        },
+        {
+          "op": "set_box",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          },
+          "width": 232,
+          "height": 101
+        }
+      ]
+    },
+    "panel.echo": {
+      "lane": "user",
+      "job_key": "panel-echo",
+      "coalesce": "keep_first",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "mode",
+          "value": "trace-panel:{task_id}:{payload}:cap={captured_lane}:live={live_lane}:n={state_count}"
+        },
+        {
+          "op": "queue_async",
+          "handler_id": "followup.panel",
+          "payload": "panel-follow:{task_id}:{payload}"
+        }
+      ]
+    },
+    "route.commit": {
+      "lane": "micro",
+      "job_key": "route-commit",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "phase",
+          "value": "trace-route1:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        },
+        {
+          "op": "shared_replace",
+          "slot": "route_bus",
+          "value": {
+            "revision": "trace-{task_id}",
+            "lane": "trace-route-{payload}"
+          }
+        }
+      ]
+    },
+    "telemetry.audit3": {
+      "lane": "background",
+      "job_key": "telemetry-audit3",
+      "coalesce": "none",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 2
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "state",
+          "value": "trace-t3:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        }
+      ]
+    },
+    "shell.interlock": {
+      "lane": "user",
+      "job_key": "shell-interlock",
+      "coalesce": "none",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 2
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "trace-s3:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          },
+          "name": "state",
+          "value": "trace-portal:{task_id}:{payload}"
+        }
+      ]
+    },
+    "bridge.publish3": {
+      "lane": "user",
+      "job_key": "bridge-v3",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "route",
+          "value": "trace-b3:{task_id}:{payload}:cap={captured_lane}:live={live_lane}:n={state_count}"
+        },
+        {
+          "op": "queue_async",
+          "handler_id": "followup.bridge",
+          "payload": "bridge-follow:{task_id}:{payload}"
+        }
+      ]
+    },
+    "route.commit2": {
+      "lane": "micro",
+      "job_key": "route-v2",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "phase",
+          "value": "trace-r2:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        },
+        {
+          "op": "queue_async",
+          "handler_id": "followup.route",
+          "payload": "route-follow:{task_id}:{payload}"
+        }
+      ]
+    },
+    "telemetry.audit4": {
+      "lane": "micro",
+      "job_key": "telemetry-v4",
+      "coalesce": "none",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "echo",
+          "value": "trace-t4:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        }
+      ]
+    },
+    "shell.flush4": {
+      "lane": "user",
+      "job_key": "shell-v4",
+      "coalesce": "keep_first",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "trace-s4:{task_id}:{payload}:cap={captured_lane}:live={live_lane}:n={state_count}"
+        },
+        {
+          "op": "queue_async",
+          "handler_id": "followup.shell",
+          "payload": "s4-follow:{task_id}:{payload}"
+        }
+      ]
+    },
+    "panel.echo3": {
+      "lane": "user",
+      "job_key": "panel-v3",
+      "coalesce": "none",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "trace-p3:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        },
+        {
+          "op": "set_box",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          },
+          "width": 245,
+          "height": 109
+        }
+      ]
+    },
+    "theme.sync2": {
+      "lane": "background",
+      "job_key": "theme-v2",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "theme",
+          "value": "trace-h2:{task_id}:{payload}:cap={captured_lane}:live={live_lane}:n={state_count}"
+        },
+        {
+          "op": "queue_async",
+          "handler_id": "followup.theme",
+          "payload": "theme-follow:{task_id}:{payload}"
+        }
+      ]
+    },
+    "metrics.beat": {
+      "lane": "background",
+      "job_key": "metrics-v2",
+      "coalesce": "none",
+      "actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "armed",
+          "value": "trace-m2:{task_id}:{payload}:cap={captured_revision}:live={live_revision}:n={state_count}"
+        }
+      ]
+    },
+    "followup.audit": {
+      "lane": "background",
+      "job_key": "follow-audit",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          },
+          "name": "echo",
+          "value": "{payload}:live={live_revision}:n={state_count}"
+        }
+      ]
+    },
+    "followup.shell": {
+      "lane": "background",
+      "job_key": "follow-shell",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          },
+          "name": "mode",
+          "value": "{payload}:live={live_lane}:n={state_count}"
+        }
+      ]
+    },
+    "followup.panel": {
+      "lane": "background",
+      "job_key": "follow-panel",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "relay-shared"
+          },
+          "name": "pulse",
+          "value": "{payload}:live={live_revision}:n={state_count}"
+        }
+      ]
+    },
+    "followup.bridge": {
+      "lane": "background",
+      "job_key": "follow-bridge",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          },
+          "name": "status",
+          "value": "{payload}:live={live_revision}:n={state_count}"
+        }
+      ]
+    },
+    "followup.route": {
+      "lane": "background",
+      "job_key": "follow-route",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          },
+          "name": "state",
+          "value": "{payload}:live={live_lane}:n={state_count}"
+        }
+      ]
+    },
+    "followup.theme": {
+      "lane": "background",
+      "job_key": "follow-theme",
+      "coalesce": "replace",
+      "actions": [
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          },
+          "name": "mode",
+          "value": "{payload}:live={live_lane}:n={state_count}"
+        }
+      ]
+    }
+  }
+}

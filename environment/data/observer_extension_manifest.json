@@ -1,0 +1,10 @@
+{
+  "base_capture_manifest": "capture_manifest.json",
+  "base_capture_ends_at_seq": 273,
+  "extension_seq_min": 274,
+  "extension_seq_max": 377,
+  "extension_records": 104,
+  "first_extension_checkpoint": "cp32",
+  "last_extension_checkpoint": "cp49",
+  "note": "The base capture files are preserved byte-for-byte. observer_session.jsonl continues the same session and is interpreted with observer_contract.md and observer_runtime.json."
+}

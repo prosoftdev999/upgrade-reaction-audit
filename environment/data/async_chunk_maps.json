@@ -1,0 +1,73 @@
+{
+  "chunks/runtime-1.js": {
+    "version": 3,
+    "sources": [
+      "src/telemetry.ts",
+      "src/bridge.ts",
+      "src/theme.ts",
+      "src/shell.ts"
+    ],
+    "names": [
+      "flushAudit",
+      "publishBridge",
+      "syncTheme",
+      "flushShell",
+      "routeSample"
+    ],
+    "mappings": ";;;;;;;;;;QAwCEA;;;;SCKCC;;;;UCKCC;;;;WCKCC;;;;YHKCC"
+  },
+  "chunks/runtime-2.js": {
+    "version": 3,
+    "sources": [
+      "src/bridge.ts",
+      "src/panel.ts",
+      "src/route.ts",
+      "src/telemetry.ts",
+      "src/shell.ts"
+    ],
+    "names": [
+      "commitLayout",
+      "panelEcho",
+      "commitRoute",
+      "flushAuditV3",
+      "shellInterlock"
+    ],
+    "mappings": ";;;;;;;;;;QA4DEA;;;;SCKCC;;;;UCKCC;;;;WCKCC;;;;YCKCC"
+  },
+  "chunks/runtime-3.js": {
+    "version": 3,
+    "sources": [
+      "src/bridge.ts",
+      "src/route.ts",
+      "src/telemetry.ts",
+      "src/shell.ts",
+      "src/panel.ts"
+    ],
+    "names": [
+      "publishBridgeV3",
+      "commitRouteV2",
+      "flushAuditV4",
+      "flushShellV4",
+      "panelEchoV3"
+    ],
+    "mappings": ";;;;;;;;;;QAgFEA;;;;SCKCC;;;;UCKCC;;;;WCKCC;;;;YCKCC"
+  },
+  "chunks/runtime-4.js": {
+    "version": 3,
+    "sources": [
+      "src/theme.ts",
+      "src/metrics.ts",
+      "src/bridge.ts",
+      "src/shell.ts",
+      "src/route.ts"
+    ],
+    "names": [
+      "syncThemeV2",
+      "metricsBeat",
+      "publishBridgeV3",
+      "flushShellV4",
+      "commitRouteV2"
+    ],
+    "mappings": ";;;;;;;;;;QAoGEA;;;;SCKCC;;;;UCKCC;;;;WCKCC;;;;YCKCC"
+  }
+}

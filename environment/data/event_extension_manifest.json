@@ -1,0 +1,10 @@
+{
+  "observer_extension_manifest": "observer_extension_manifest.json",
+  "observer_capture_ends_at_seq": 377,
+  "event_seq_min": 378,
+  "event_seq_max": 417,
+  "event_records": 40,
+  "first_event_checkpoint": "cp50",
+  "last_event_checkpoint": "cp62",
+  "note": "All files from the base and observer phases are preserved unchanged. event_session.jsonl continues the same runtime and is interpreted with event_contract.md and event_runtime.json."
+}

@@ -1,0 +1,2200 @@
+{
+  "entries": [
+    "shell"
+  ],
+  "initial_revisions": {
+    "shell": "shell.s1",
+    "panel": "panel.p1",
+    "bridge": "bridge.b1",
+    "route": "route.r1",
+    "theme": "theme.h1",
+    "metrics": "metrics.m1",
+    "telemetry": "telemetry.t1"
+  },
+  "revisions": [
+    {
+      "revision_id": "shell.s1",
+      "module_id": "shell",
+      "imports": [
+        "panel",
+        "route",
+        "theme"
+      ],
+      "self_accept": true,
+      "accepts": [
+        "panel"
+      ],
+      "controller_uid": "bm3",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "audit-sink"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "retain",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v1"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "hmr-install:shell:shell.s1:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-dispose:shell:shell.s1:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-accept:shell:shell.s1:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "audit": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "status",
+            "value": "hmr-signal:shell:shell.s1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "open",
+            "value": "hmr-cap:shell:shell.s1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "shared_mutate",
+            "slot": "route_bus",
+            "values": {
+              "lane": "shell-{signal_id}-{state_count}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "shell.s2",
+      "module_id": "shell",
+      "imports": [
+        "panel",
+        "route",
+        "theme"
+      ],
+      "self_accept": true,
+      "accepts": [
+        "panel",
+        "theme"
+      ],
+      "controller_uid": "bm3",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "audit-sink"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v2"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "hmr-install:shell:shell.s2:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-dispose:shell:shell.s2:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-accept:shell:shell.s2:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "audit": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "status",
+            "value": "hmr-signal:shell:shell.s2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "open",
+            "value": "hmr-cap:shell:shell.s2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "shared_mutate",
+            "slot": "route_bus",
+            "values": {
+              "lane": "shell-{signal_id}-{state_count}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "shell.s3",
+      "module_id": "shell",
+      "imports": [
+        "panel",
+        "route",
+        "theme"
+      ],
+      "self_accept": true,
+      "accepts": [
+        "theme"
+      ],
+      "controller_uid": "bm3",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "audit-sink"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v3"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "hmr-install:shell:shell.s3:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-dispose:shell:shell.s3:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-accept:shell:shell.s3:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "audit": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "status",
+            "value": "hmr-signal:shell:shell.s3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "open",
+            "value": "hmr-cap:shell:shell.s3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "shared_mutate",
+            "slot": "route_bus",
+            "values": {
+              "lane": "shell-{signal_id}-{state_count}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "shell.s4",
+      "module_id": "shell",
+      "imports": [
+        "panel",
+        "route",
+        "theme"
+      ],
+      "self_accept": true,
+      "accepts": [
+        "panel",
+        "theme",
+        "route"
+      ],
+      "controller_uid": "bm3",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "audit-sink"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v1"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "status",
+          "value": "hmr-install:shell:shell.s4:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-dispose:shell:shell.s4:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-accept:shell:shell.s4:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "audit": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "status",
+            "value": "hmr-signal:shell:shell.s4:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "open",
+            "value": "hmr-cap:shell:shell.s4:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "shared_mutate",
+            "slot": "route_bus",
+            "values": {
+              "lane": "shell-{signal_id}-{state_count}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "panel.p1",
+      "module_id": "panel",
+      "imports": [
+        "bridge",
+        "metrics"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "bridge"
+      ],
+      "controller_uid": "bm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "retain",
+      "runtimes": [
+        {
+          "kind": "mutation",
+          "generation_id": "audit.main.v1"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "mode",
+          "value": "hmr-install:panel:panel.p1:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "state",
+          "value": "hmr-dispose:panel:panel.p1:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "state",
+          "value": "hmr-accept:panel:panel.p1:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "route": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "mode",
+            "value": "hmr-signal:panel:panel.p1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "state",
+            "value": "hmr-cap:panel:panel.p1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "panel.p2",
+      "module_id": "panel",
+      "imports": [
+        "bridge",
+        "telemetry"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "telemetry"
+      ],
+      "controller_uid": "bm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "mutation",
+          "generation_id": "audit.main.v2"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "mode",
+          "value": "hmr-install:panel:panel.p2:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "state",
+          "value": "hmr-dispose:panel:panel.p2:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "state",
+          "value": "hmr-accept:panel:panel.p2:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "route": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "mode",
+            "value": "hmr-signal:panel:panel.p2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "state",
+            "value": "hmr-cap:panel:panel.p2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "panel.p3",
+      "module_id": "panel",
+      "imports": [
+        "bridge",
+        "metrics",
+        "telemetry"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "bridge",
+        "telemetry"
+      ],
+      "controller_uid": "bm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "mutation",
+          "generation_id": "audit.preview.v3"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "mode",
+          "value": "hmr-install:panel:panel.p3:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "state",
+          "value": "hmr-dispose:panel:panel.p3:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "state",
+          "value": "hmr-accept:panel:panel.p3:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "route": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "mode",
+            "value": "hmr-signal:panel:panel.p3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "state",
+            "value": "hmr-cap:panel:panel.p3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "bridge.b1",
+      "module_id": "bridge",
+      "imports": [
+        "telemetry"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "telemetry"
+      ],
+      "controller_uid": "rm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "retain",
+      "runtimes": [
+        {
+          "kind": "frame",
+          "generation_id": "render.main.v1"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "route",
+          "value": "hmr-install:bridge:bridge.b1:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "mode",
+          "value": "hmr-dispose:bridge:bridge.b1:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "mode",
+          "value": "hmr-accept:bridge:bridge.b1:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "layout": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "route",
+            "value": "hmr-signal:bridge:bridge.b1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "mode",
+            "value": "hmr-cap:bridge:bridge.b1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_box",
+            "target": {
+              "kind": "live_role",
+              "role": "bridge-main"
+            },
+            "width": "{payload}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "bridge.b2",
+      "module_id": "bridge",
+      "imports": [
+        "metrics"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "metrics"
+      ],
+      "controller_uid": "rm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "frame",
+          "generation_id": "render.main.v2"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "route",
+          "value": "hmr-install:bridge:bridge.b2:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "mode",
+          "value": "hmr-dispose:bridge:bridge.b2:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "mode",
+          "value": "hmr-accept:bridge:bridge.b2:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "layout": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "route",
+            "value": "hmr-signal:bridge:bridge.b2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "mode",
+            "value": "hmr-cap:bridge:bridge.b2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_box",
+            "target": {
+              "kind": "live_role",
+              "role": "bridge-main"
+            },
+            "width": "{payload}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "bridge.b3",
+      "module_id": "bridge",
+      "imports": [
+        "telemetry",
+        "metrics"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "metrics"
+      ],
+      "controller_uid": "rm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "frame",
+          "generation_id": "render.preview.v3"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "route",
+          "value": "hmr-install:bridge:bridge.b3:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "mode",
+          "value": "hmr-dispose:bridge:bridge.b3:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "mode",
+          "value": "hmr-accept:bridge:bridge.b3:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "layout": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "route",
+            "value": "hmr-signal:bridge:bridge.b3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "mode",
+            "value": "hmr-cap:bridge:bridge.b3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_box",
+            "target": {
+              "kind": "live_role",
+              "role": "bridge-main"
+            },
+            "width": "{payload}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "route.r1",
+      "module_id": "route",
+      "imports": [
+        "bridge",
+        "telemetry"
+      ],
+      "self_accept": true,
+      "accepts": [
+        "bridge",
+        "telemetry"
+      ],
+      "controller_uid": "pp1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "relay-shared"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "retain",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v2"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "phase",
+          "value": "hmr-install:route:route.r1:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "route",
+          "value": "hmr-dispose:route:route.r1:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "route",
+          "value": "hmr-accept:route:route.r1:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "audit": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "phase",
+            "value": "hmr-signal:route:route.r1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "route",
+            "value": "hmr-cap:route:route.r1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "route.r2",
+      "module_id": "route",
+      "imports": [
+        "telemetry",
+        "metrics"
+      ],
+      "self_accept": true,
+      "accepts": [
+        "telemetry",
+        "metrics"
+      ],
+      "controller_uid": "pp1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "relay-shared"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v3"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "phase",
+          "value": "hmr-install:route:route.r2:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "route",
+          "value": "hmr-dispose:route:route.r2:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "route",
+          "value": "hmr-accept:route:route.r2:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "audit": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "phase",
+            "value": "hmr-signal:route:route.r2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "route",
+            "value": "hmr-cap:route:route.r2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "theme.h1",
+      "module_id": "theme",
+      "imports": [
+        "metrics"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "metrics"
+      ],
+      "controller_uid": "bp1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "audit-sink"
+          }
+        }
+      ],
+      "shared_slot": "theme_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "retain",
+      "runtimes": [
+        {
+          "kind": "mutation",
+          "generation_id": "audit.preview.v3"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "theme",
+          "value": "hmr-install:theme:theme.h1:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-dispose:theme:theme.h1:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-accept:theme:theme.h1:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "theme": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "theme",
+            "value": "hmr-signal:theme:theme.h1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "open",
+            "value": "hmr-cap:theme:theme.h1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "shared_mutate",
+            "slot": "theme_bus",
+            "values": {
+              "lane": "theme-{signal_id}-{state_count}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "theme.h2",
+      "module_id": "theme",
+      "imports": [
+        "metrics",
+        "telemetry"
+      ],
+      "self_accept": false,
+      "accepts": [
+        "telemetry"
+      ],
+      "controller_uid": "bp1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "audit-sink"
+          }
+        }
+      ],
+      "shared_slot": "theme_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "frame",
+          "generation_id": "render.main.v1"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "theme",
+          "value": "hmr-install:theme:theme.h2:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-dispose:theme:theme.h2:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "open",
+          "value": "hmr-accept:theme:theme.h2:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "theme": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "theme",
+            "value": "hmr-signal:theme:theme.h2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "open",
+            "value": "hmr-cap:theme:theme.h2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "shared_mutate",
+            "slot": "theme_bus",
+            "values": {
+              "lane": "theme-{signal_id}-{state_count}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "metrics.m1",
+      "module_id": "metrics",
+      "imports": [
+        "telemetry"
+      ],
+      "self_accept": false,
+      "accepts": [],
+      "controller_uid": "rp1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          }
+        }
+      ],
+      "shared_slot": "theme_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "frame",
+          "generation_id": "render.main.v2"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "armed",
+          "value": "hmr-install:metrics:metrics.m1:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "echo",
+          "value": "hmr-dispose:metrics:metrics.m1:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "echo",
+          "value": "hmr-accept:metrics:metrics.m1:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "layout": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "armed",
+            "value": "hmr-signal:metrics:metrics.m1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "echo",
+            "value": "hmr-cap:metrics:metrics.m1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_translate",
+            "target": {
+              "kind": "live_role",
+              "role": "bridge-main"
+            },
+            "translate_x": "{payload}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "metrics.m2",
+      "module_id": "metrics",
+      "imports": [
+        "telemetry"
+      ],
+      "self_accept": true,
+      "accepts": [],
+      "controller_uid": "rp1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "portal-shared"
+          }
+        }
+      ],
+      "shared_slot": "theme_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "frame",
+          "generation_id": "render.preview.v3"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "armed",
+          "value": "hmr-install:metrics:metrics.m2:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "echo",
+          "value": "hmr-dispose:metrics:metrics.m2:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "echo",
+          "value": "hmr-accept:metrics:metrics.m2:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "layout": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "armed",
+            "value": "hmr-signal:metrics:metrics.m2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "echo",
+            "value": "hmr-cap:metrics:metrics.m2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_translate",
+            "target": {
+              "kind": "live_role",
+              "role": "bridge-main"
+            },
+            "translate_x": "{payload}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "telemetry.t1",
+      "module_id": "telemetry",
+      "imports": [],
+      "self_accept": false,
+      "accepts": [],
+      "controller_uid": "pm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "retain",
+      "runtimes": [
+        {
+          "kind": "mutation",
+          "generation_id": "audit.main.v1"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "state",
+          "value": "hmr-install:telemetry:telemetry.t1:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-dispose:telemetry:telemetry.t1:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-accept:telemetry:telemetry.t1:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "route": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "state",
+            "value": "hmr-signal:telemetry:telemetry.t1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "status",
+            "value": "hmr-cap:telemetry:telemetry.t1:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "telemetry.t2",
+      "module_id": "telemetry",
+      "imports": [],
+      "self_accept": false,
+      "accepts": [],
+      "controller_uid": "pm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "retain",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v1"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "state",
+          "value": "hmr-install:telemetry:telemetry.t2:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-dispose:telemetry:telemetry.t2:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-accept:telemetry:telemetry.t2:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "route": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "state",
+            "value": "hmr-signal:telemetry:telemetry.t2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "status",
+            "value": "hmr-cap:telemetry:telemetry.t2:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "telemetry.t3",
+      "module_id": "telemetry",
+      "imports": [],
+      "self_accept": false,
+      "accepts": [],
+      "controller_uid": "pm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "mutation",
+          "generation_id": "audit.main.v2"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "state",
+          "value": "hmr-install:telemetry:telemetry.t3:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-dispose:telemetry:telemetry.t3:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-accept:telemetry:telemetry.t3:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "route": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "state",
+            "value": "hmr-signal:telemetry:telemetry.t3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "status",
+            "value": "hmr-cap:telemetry:telemetry.t3:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    },
+    {
+      "revision_id": "telemetry.t4",
+      "module_id": "telemetry",
+      "imports": [],
+      "self_accept": false,
+      "accepts": [],
+      "controller_uid": "pm1",
+      "captures": [
+        {
+          "name": "primary",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          }
+        }
+      ],
+      "shared_slot": "route_bus",
+      "initial_state": {
+        "count": 0
+      },
+      "signal_lifetime": "disconnect",
+      "runtimes": [
+        {
+          "kind": "event",
+          "generation_id": "events.preview.v3"
+        }
+      ],
+      "install_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "controller"
+          },
+          "name": "state",
+          "value": "hmr-install:telemetry:telemetry.t4:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "dispose_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-dispose:telemetry:telemetry.t4:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "accept_actions": [
+        {
+          "op": "bump_state",
+          "key": "count",
+          "by": 1
+        },
+        {
+          "op": "set_attr",
+          "target": {
+            "kind": "capture",
+            "name": "primary"
+          },
+          "name": "status",
+          "value": "hmr-accept:telemetry:telemetry.t4:{accepted}:tx={tx_id}:n={state_count}:cap={captured_revision}:live={live_revision}"
+        }
+      ],
+      "signals": {
+        "route": [
+          {
+            "op": "bump_state",
+            "key": "count",
+            "by": 1
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "controller"
+            },
+            "name": "state",
+            "value": "hmr-signal:telemetry:telemetry.t4:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          },
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "primary"
+            },
+            "name": "status",
+            "value": "hmr-cap:telemetry:telemetry.t4:{signal_id}:{payload}:n={state_count}:cap={captured_revision}:live={live_revision}"
+          }
+        ]
+      }
+    }
+  ]
+}

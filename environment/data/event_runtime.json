@@ -1,0 +1,294 @@
+{
+  "generations": [
+    {
+      "generation_id": "events.preview.v1",
+      "listeners": [
+        {
+          "name": "preview-root-capture",
+          "controller_uid": "bp1",
+          "listen_target": {"kind": "uid", "uid": "root_preview"},
+          "event_type": "audit",
+          "phase": "capture",
+          "signal": "legacy-root",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "route_bus",
+          "captures": [
+            {"name": "bridge_primary", "kind": "live_role", "role": "bridge-main"},
+            {"name": "audit_sink", "kind": "live_role", "role": "audit-sink"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "bridge_primary"},
+              "name": "mode",
+              "value": "ev1:{event_detail}:vis={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            },
+            {
+              "op": "enqueue_event",
+              "job_key": "root-follow",
+              "coalesce": "replace",
+              "event_id": "q1:{event_id}",
+              "event_type": "relay",
+              "target": {"kind": "live_role", "role": "relay-shared"},
+              "detail": "follow:{event_detail}:orig={original_target_uid}:cap={captured_revision}:live={live_revision}",
+              "bubbles": true,
+              "composed": true
+            }
+          ]
+        },
+        {
+          "name": "hard-shadow-capture",
+          "controller_uid": "bm3",
+          "listen_target": {"kind": "uid", "uid": "shadow_hard_main"},
+          "event_type": "audit",
+          "phase": "capture",
+          "once": false,
+          "dispose": "disconnect",
+          "shared_slot": "theme_bus",
+          "captures": [
+            {"name": "main_bridge", "kind": "live_role", "role": "bridge-late"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "original_target"},
+              "name": "status",
+              "value": "shadow:{event_detail}:vis={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "hard-main-bubble",
+          "controller_uid": "bm3",
+          "listen_target": {"kind": "uid", "uid": "hard_main"},
+          "event_type": "audit",
+          "phase": "bubble",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "route_bus",
+          "captures": [
+            {"name": "relay", "kind": "live_role", "role": "relay-shared"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "relay"},
+              "name": "pulse",
+              "value": "ev1-b:{event_detail}:vis={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "preview-root-once",
+          "controller_uid": "pp1",
+          "listen_target": {"kind": "uid", "uid": "root_preview"},
+          "event_type": "audit",
+          "phase": "bubble",
+          "signal": "legacy-root",
+          "once": true,
+          "dispose": "disconnect",
+          "shared_slot": "theme_bus",
+          "captures": [
+            {"name": "portal", "kind": "live_role", "role": "portal-shared"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "portal"},
+              "name": "phase",
+              "value": "ev1-once:{event_detail}:vis={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "relay-root-capture",
+          "controller_uid": "rp1",
+          "listen_target": {"kind": "uid", "uid": "root_preview"},
+          "event_type": "relay",
+          "phase": "capture",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "route_bus",
+          "captures": [
+            {"name": "bridge_late", "kind": "live_role", "role": "bridge-late"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "bridge_late"},
+              "name": "mode",
+              "value": "ev1-q:{event_detail}:vis={visible_target_uid}:live={live_revision}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": "events.preview.v2",
+      "listeners": [
+        {
+          "name": "rebound-main-capture",
+          "controller_uid": "bm3",
+          "listen_target": {"kind": "live_role", "role": "hard-main-host"},
+          "event_type": "audit",
+          "phase": "capture",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "route_bus",
+          "captures": [
+            {"name": "preview_bridge", "kind": "live_role", "role": "bridge-main"},
+            {"name": "portal", "kind": "live_role", "role": "portal-shared"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "preview_bridge"},
+              "name": "theme",
+              "value": "ev2:{event_detail}:vis={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            },
+            {
+              "op": "enqueue_event",
+              "job_key": "v2-follow",
+              "coalesce": "keep_first",
+              "event_id": "q2:{event_id}",
+              "event_type": "relay",
+              "target": {"kind": "capture", "name": "portal"},
+              "detail": "v2-follow:{event_detail}:orig={original_target_uid}:cap={captured_revision}:live={live_revision}",
+              "bubbles": true,
+              "composed": true
+            }
+          ]
+        },
+        {
+          "name": "move-preview-once",
+          "controller_uid": "bp1",
+          "listen_target": {"kind": "uid", "uid": "root_preview"},
+          "event_type": "audit",
+          "phase": "capture",
+          "signal": "move-preview",
+          "once": true,
+          "dispose": "disconnect",
+          "captures": [],
+          "actions": [
+            {
+              "op": "move",
+              "target": {"kind": "uid", "uid": "hard_preview"},
+              "parent": {"kind": "uid", "uid": "hard_main"}
+            }
+          ]
+        },
+        {
+          "name": "preview-host-bubble",
+          "controller_uid": "bp1",
+          "listen_target": {"kind": "uid", "uid": "hard_preview"},
+          "event_type": "audit",
+          "phase": "bubble",
+          "once": false,
+          "dispose": "disconnect",
+          "shared_slot": "theme_bus",
+          "captures": [
+            {"name": "relay", "kind": "live_role", "role": "relay-shared"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "relay"},
+              "name": "route",
+              "value": "ev2-b:{event_detail}:vis={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "v2-relay-bubble",
+          "controller_uid": "pp1",
+          "listen_target": {"kind": "uid", "uid": "root_preview"},
+          "event_type": "relay",
+          "phase": "bubble",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "theme_bus",
+          "captures": [
+            {"name": "portal", "kind": "live_role", "role": "portal-shared"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "portal"},
+              "name": "echo",
+              "value": "ev2-relay:{event_detail}:vis={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": "events.preview.v3",
+      "listeners": [
+        {
+          "name": "late-main-capture",
+          "controller_uid": "bm3",
+          "listen_target": {"kind": "uid", "uid": "hard_main"},
+          "event_type": "audit",
+          "phase": "capture",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "route_bus",
+          "captures": [
+            {"name": "bridge", "kind": "live_role", "role": "bridge-late"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "bridge"},
+              "name": "mode",
+              "value": "ev3:{event_detail}:visible={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "late-root-bubble",
+          "controller_uid": "pp1",
+          "listen_target": {"kind": "uid", "uid": "root_preview"},
+          "event_type": "audit",
+          "phase": "bubble",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "theme_bus",
+          "captures": [
+            {"name": "portal", "kind": "live_role", "role": "portal-shared"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "portal"},
+              "name": "phase",
+              "value": "ev3-root:{event_detail}:visible={visible_target_uid}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "late-relay-bubble",
+          "controller_uid": "rp1",
+          "listen_target": {"kind": "uid", "uid": "hard_main"},
+          "event_type": "relay",
+          "phase": "bubble",
+          "once": false,
+          "dispose": "retain",
+          "shared_slot": "route_bus",
+          "captures": [
+            {"name": "relay", "kind": "live_role", "role": "relay-shared"}
+          ],
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {"kind": "capture", "name": "relay"},
+              "name": "armed",
+              "value": "ev3-relay:{event_detail}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

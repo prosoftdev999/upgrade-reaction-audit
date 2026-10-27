@@ -1,0 +1,10 @@
+{
+  "capture": "web-component-lazy-registry incident reproduction",
+  "global_seq_min": 1,
+  "global_seq_max": 273,
+  "dom_records": 139,
+  "registry_records": 13,
+  "scheduler_records": 121,
+  "checkpoint_count": 31,
+  "note": "The original capture prefix is preserved. The hardening phase adds component callback programs and keyed microtasks; callback-generated mutations are derived from definition_catalog.json and are not duplicated in dom_capture.jsonl."
+}

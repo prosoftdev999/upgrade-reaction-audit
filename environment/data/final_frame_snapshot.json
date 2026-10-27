@@ -1,0 +1,662 @@
+{
+  "dom": {
+    "nodes": [
+      {
+        "uid": "audit_sink_decoy",
+        "kind": "element",
+        "local_name": "div",
+        "owner_doc": "doc_preview",
+        "parent_uid": "host_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "audit-sink"
+        }
+      },
+      {
+        "uid": "b1",
+        "kind": "element",
+        "local_name": "x-badge",
+        "owner_doc": "doc_main",
+        "parent_uid": "p1",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "level": "3",
+          "tone": "violet"
+        }
+      },
+      {
+        "uid": "b2",
+        "kind": "element",
+        "local_name": "x-badge",
+        "owner_doc": "doc_main",
+        "parent_uid": "shadow_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "level": "2",
+          "tone": "amber"
+        }
+      },
+      {
+        "uid": "b3",
+        "kind": "element",
+        "local_name": "x-badge",
+        "owner_doc": "doc_main",
+        "parent_uid": "shadow_p3",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "tone": "red",
+          "level": "12"
+        }
+      },
+      {
+        "uid": "b4",
+        "kind": "element",
+        "local_name": "x-badge",
+        "owner_doc": "doc_preview",
+        "parent_uid": "host_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "tone": "silver",
+          "level": "4"
+        }
+      },
+      {
+        "uid": "bm1",
+        "kind": "element",
+        "local_name": "x-bridge",
+        "owner_doc": "doc_preview",
+        "parent_uid": "hard_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "bridge-main",
+          "peer": "relay-shared",
+          "mode": "rf3-io:bm1:r8000:b4:cap=r10:live=r10",
+          "status": "echo:echo:rf1-job:bp1:120x50:cap=r9:live=r10",
+          "data-note": "not-observed"
+        }
+      },
+      {
+        "uid": "bm2",
+        "kind": "element",
+        "local_name": "x-bridge",
+        "owner_doc": "doc_preview",
+        "parent_uid": "shadow_hard_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "bridge-alt",
+          "peer": "relay-alt",
+          "mode": "connected:bm2",
+          "status": "echo:echo:relay-connected:rm2"
+        }
+      },
+      {
+        "uid": "bm3",
+        "kind": "element",
+        "local_name": "x-bridge",
+        "owner_doc": "doc_preview",
+        "parent_uid": "hard_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "bridge-late",
+          "peer": "relay-shared",
+          "mode": "ev1-q:v2-follow:epsilon:orig=pp1:cap=r8:live=r8:vis=hard_preview:live=r8",
+          "status": "collision-status"
+        }
+      },
+      {
+        "uid": "bp1",
+        "kind": "element",
+        "local_name": "x-bridge",
+        "owner_doc": "doc_preview",
+        "parent_uid": "hard_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "bridge-retired",
+          "peer": "relay-shared",
+          "mode": "ev1:alpha:vis=hard_main:cap=r6:live=r6",
+          "theme": "rf1-io:pp1:r0:b0:cap=t8:live=t10",
+          "status": "pv-echo:pv-echo:rf1-job:bp1:120x50:cap=r9:live=r10"
+        }
+      },
+      {
+        "uid": "hard_main",
+        "kind": "element",
+        "local_name": "section",
+        "owner_doc": "doc_preview",
+        "parent_uid": "root_preview",
+        "host_uid": null,
+        "shadow_root_uid": "shadow_hard_main",
+        "attrs": {
+          "data-role": "hard-main-host"
+        }
+      },
+      {
+        "uid": "hard_preview",
+        "kind": "element",
+        "local_name": "article",
+        "owner_doc": "doc_preview",
+        "parent_uid": "hard_main",
+        "host_uid": null,
+        "shadow_root_uid": "shadow_hard_preview",
+        "attrs": {
+          "data-role": "hard-preview-host"
+        }
+      },
+      {
+        "uid": "host_main",
+        "kind": "element",
+        "local_name": "section",
+        "owner_doc": "doc_main",
+        "parent_uid": "root_main",
+        "host_uid": null,
+        "shadow_root_uid": "shadow_main",
+        "attrs": {}
+      },
+      {
+        "uid": "host_preview",
+        "kind": "element",
+        "local_name": "article",
+        "owner_doc": "doc_preview",
+        "parent_uid": "root_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {}
+      },
+      {
+        "uid": "m1",
+        "kind": "element",
+        "local_name": "x-meter",
+        "owner_doc": "doc_main",
+        "parent_uid": "host_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "value": "5",
+          "max": "10"
+        }
+      },
+      {
+        "uid": "m2",
+        "kind": "element",
+        "local_name": "x-meter",
+        "owner_doc": "doc_main",
+        "parent_uid": "p3",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "value": "2",
+          "max": "8"
+        }
+      },
+      {
+        "uid": "observer_decoy",
+        "kind": "element",
+        "local_name": "div",
+        "owner_doc": "doc_preview",
+        "parent_uid": "root_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "retired-main-host"
+        }
+      },
+      {
+        "uid": "p1",
+        "kind": "element",
+        "local_name": "x-panel",
+        "owner_doc": "doc_main",
+        "parent_uid": "p3",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-mode": "preview-placement",
+          "data-theme": "still-ignored"
+        }
+      },
+      {
+        "uid": "p2",
+        "kind": "element",
+        "local_name": "x-panel",
+        "owner_doc": "doc_preview",
+        "parent_uid": "host_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-mode": "wide",
+          "data-theme": "dusk-2"
+        }
+      },
+      {
+        "uid": "p3",
+        "kind": "element",
+        "local_name": "x-panel",
+        "owner_doc": "doc_main",
+        "parent_uid": "root_main",
+        "host_uid": null,
+        "shadow_root_uid": "shadow_p3",
+        "attrs": {
+          "data-theme": "forest",
+          "open": ""
+        }
+      },
+      {
+        "uid": "p4",
+        "kind": "element",
+        "local_name": "x-panel",
+        "owner_doc": "doc_preview",
+        "parent_uid": null,
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-theme": "sand"
+        }
+      },
+      {
+        "uid": "p5",
+        "kind": "element",
+        "local_name": "x-panel",
+        "owner_doc": "doc_main",
+        "parent_uid": "host_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-mode": "new",
+          "data-role": "audit-sink",
+          "open": "g2-route:rm1:rf1-job:bp1:120x50:cap=r9:live=r10:cap=r4:live=r10"
+        }
+      },
+      {
+        "uid": "p6",
+        "kind": "element",
+        "local_name": "x-panel",
+        "owner_doc": "doc_preview",
+        "parent_uid": "host_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-theme": "late-2",
+          "open": "g3-status:bm1:echo:echo:rf1-job:bp1:120x50:cap=r9:live=r10:cap=r6:live=r10",
+          "data-mode": "unobserved-preview",
+          "data-role": "audit-sink"
+        }
+      },
+      {
+        "uid": "pm1",
+        "kind": "element",
+        "local_name": "x-portal",
+        "owner_doc": "doc_preview",
+        "parent_uid": "shadow_hard_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "portal-shared",
+          "target": "bridge-main",
+          "state": "rf1-job:bp1:120x50:cap=r9:live=r10",
+          "echo": "echo:rf1-job:bp1:120x50:cap=r9:live=r10",
+          "phase": "ev3-root:epsilon:visible=hard_preview:cap=t8:live=t8"
+        }
+      },
+      {
+        "uid": "pm2",
+        "kind": "element",
+        "local_name": "x-portal",
+        "owner_doc": "doc_preview",
+        "parent_uid": "pm1",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "portal-alt",
+          "target": "bridge-alt",
+          "state": "connected:bm2",
+          "echo": "echo:relay-connected:rm2"
+        }
+      },
+      {
+        "uid": "pp1",
+        "kind": "element",
+        "local_name": "x-portal",
+        "owner_doc": "doc_preview",
+        "parent_uid": "shadow_hard_preview",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "portal-shared",
+          "target": "bridge-main",
+          "phase": "ev1-once:alpha:vis=hard_main:cap=t6:live=t6",
+          "echo": "pv-echo:rf1-job:bp1:120x50:cap=r9:live=r10",
+          "state": "ev1:alpha:vis=hard_main:cap=r6:live=r6"
+        }
+      },
+      {
+        "uid": "rm1",
+        "kind": "element",
+        "local_name": "x-relay",
+        "owner_doc": "doc_preview",
+        "parent_uid": "hard_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "relay-shared",
+          "sink": "portal-shared",
+          "pulse": "rf3-io:bm1:r8000:b4:cap=r10:live=r10",
+          "route": "rf1-job:bp1:120x50:cap=r9:live=r10",
+          "armed": "rf3-job:bm1:r10000:b5"
+        }
+      },
+      {
+        "uid": "rm2",
+        "kind": "element",
+        "local_name": "x-relay",
+        "owner_doc": "doc_preview",
+        "parent_uid": "pm1",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "relay-alt",
+          "sink": "portal-alt",
+          "pulse": "connected:bm2",
+          "route": "relay-connected:rm2"
+        }
+      },
+      {
+        "uid": "rp1",
+        "kind": "element",
+        "local_name": "x-relay",
+        "owner_doc": "doc_preview",
+        "parent_uid": "shadow_hard_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "data-role": "relay-retired",
+          "sink": "portal-shared",
+          "armed": "ev3-relay:v2-follow:epsilon:orig=pp1:cap=r8:live=r8:cap=r8:live=r8",
+          "pulse": "rf1-job:bp1:120x50:cap=r9:live=r10",
+          "route": "rf2-size:pm1:230x98:cap=t9:live=t9"
+        }
+      },
+      {
+        "uid": "shadow_hard_main",
+        "kind": "shadow_root",
+        "local_name": "#shadow-root",
+        "owner_doc": "doc_main",
+        "parent_uid": null,
+        "host_uid": "hard_main",
+        "shadow_root_uid": null,
+        "attrs": {}
+      },
+      {
+        "uid": "shadow_hard_preview",
+        "kind": "shadow_root",
+        "local_name": "#shadow-root",
+        "owner_doc": "doc_preview",
+        "parent_uid": null,
+        "host_uid": "hard_preview",
+        "shadow_root_uid": null,
+        "attrs": {}
+      },
+      {
+        "uid": "shadow_main",
+        "kind": "shadow_root",
+        "local_name": "#shadow-root",
+        "owner_doc": "doc_main",
+        "parent_uid": null,
+        "host_uid": "host_main",
+        "shadow_root_uid": null,
+        "attrs": {}
+      },
+      {
+        "uid": "shadow_p3",
+        "kind": "shadow_root",
+        "local_name": "#shadow-root",
+        "owner_doc": "doc_preview",
+        "parent_uid": null,
+        "host_uid": "p3",
+        "shadow_root_uid": null,
+        "attrs": {}
+      },
+      {
+        "uid": "t1",
+        "kind": "element",
+        "local_name": "x-token",
+        "owner_doc": "doc_preview",
+        "parent_uid": "p2",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "value": "A",
+          "disabled": "true"
+        }
+      },
+      {
+        "uid": "t2",
+        "kind": "element",
+        "local_name": "x-token",
+        "owner_doc": "doc_main",
+        "parent_uid": "host_main",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "value": "B2",
+          "disabled": "false"
+        }
+      },
+      {
+        "uid": "t3",
+        "kind": "element",
+        "local_name": "x-token",
+        "owner_doc": "doc_preview",
+        "parent_uid": "p4",
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "value": "C",
+          "disabled": ""
+        }
+      },
+      {
+        "uid": "u1",
+        "kind": "element",
+        "local_name": "x-unknown",
+        "owner_doc": "doc_main",
+        "parent_uid": null,
+        "host_uid": null,
+        "shadow_root_uid": null,
+        "attrs": {
+          "state": "raw"
+        }
+      }
+    ]
+  },
+  "frame_state": {
+    "layout": {
+      "audit_sink_decoy": {
+        "x": 600,
+        "y": 420,
+        "width": 120,
+        "height": 60,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "bm1": {
+        "x": 230,
+        "y": 35,
+        "width": 200,
+        "height": 120,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 70,
+        "translate_y": 0,
+        "clip": false
+      },
+      "bm3": {
+        "x": 25,
+        "y": 395,
+        "width": 170,
+        "height": 70,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "bp1": {
+        "x": 30,
+        "y": 25,
+        "width": 120,
+        "height": 50,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "hard_main": {
+        "x": 55,
+        "y": 35,
+        "width": 700,
+        "height": 500,
+        "scroll_x": 0,
+        "scroll_y": 40,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": true
+      },
+      "hard_preview": {
+        "x": 105,
+        "y": 65,
+        "width": 460,
+        "height": 310,
+        "scroll_x": 0,
+        "scroll_y": 10,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": true
+      },
+      "host_preview": {
+        "x": 20,
+        "y": 20,
+        "width": 820,
+        "height": 600,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": true
+      },
+      "observer_decoy": {
+        "x": 10,
+        "y": 550,
+        "width": 100,
+        "height": 30,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "p6": {
+        "x": 590,
+        "y": 90,
+        "width": 160,
+        "height": 110,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "pm1": {
+        "x": 300,
+        "y": 245,
+        "width": 260,
+        "height": 105,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "pm2": {
+        "x": 20,
+        "y": 20,
+        "width": 120,
+        "height": 50,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "pp1": {
+        "x": 55,
+        "y": 250,
+        "width": 180,
+        "height": 95,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 220,
+        "clip": false
+      },
+      "rm1": {
+        "x": 245,
+        "y": 390,
+        "width": 160,
+        "height": 60,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "rm2": {
+        "x": 25,
+        "y": 78,
+        "width": 115,
+        "height": 48,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      },
+      "rp1": {
+        "x": 35,
+        "y": 285,
+        "width": 155,
+        "height": 62,
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "translate_x": 0,
+        "translate_y": 0,
+        "clip": false
+      }
+    },
+    "pending_frame_jobs": [
+      {
+        "owner": "observer:6",
+        "key": "preview-follow",
+        "actions": [
+          {
+            "op": "set_attr",
+            "uid": "rm1",
+            "name": "armed",
+            "value": "rf3-job:bm1:r8000:b4"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{"seq":30,"kind":"define","task_id":"define-main-panel","registry_id":"reg_main","definition_id":"main.panel.v1"}
+{"seq":48,"kind":"define","task_id":"define-preview-panel","registry_id":"reg_preview","definition_id":"preview.panel.v2"}
+{"seq":54,"kind":"define","task_id":"define-badges","registry_id":"reg_preview","definition_id":"preview.badge.v2"}
+{"seq":55,"kind":"define","task_id":"define-badges","registry_id":"reg_main","definition_id":"main.badge.v1"}
+{"seq":73,"kind":"define","task_id":"define-preview-token","registry_id":"reg_preview","definition_id":"preview.token.v4"}
+{"seq":92,"kind":"define","task_id":"define-main-token","registry_id":"reg_main","definition_id":"main.token.v3"}
+{"seq":122,"kind":"define","task_id":"meters","registry_id":"reg_main","definition_id":"main-meter.v1"}
+{"seq":191,"kind":"define","task_id":"define-hard-main","registry_id":"reg_main","definition_id":"main.bridge.v5"}
+{"seq":192,"kind":"define","task_id":"define-hard-main","registry_id":"reg_main","definition_id":"main.portal.v2"}
+{"seq":193,"kind":"define","task_id":"define-hard-preview","registry_id":"reg_preview","definition_id":"preview.portal.v7"}
+{"seq":196,"kind":"define","task_id":"define-hard-main-relay","registry_id":"reg_main","definition_id":"main.relay.v3"}
+{"seq":197,"kind":"define","task_id":"define-hard-preview-relay","registry_id":"reg_preview","definition_id":"preview.relay.v6"}
+{"seq":200,"kind":"define","task_id":"define-hard-preview-bridge","registry_id":"reg_preview","definition_id":"preview.bridge.v8"}

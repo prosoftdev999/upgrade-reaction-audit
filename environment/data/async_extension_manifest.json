@@ -1,0 +1,13 @@
+{
+  "phase": "async-stack-provenance",
+  "starts_after_seq": 584,
+  "first_seq": 585,
+  "last_seq": 643,
+  "evidence": [
+    "async_bundle_index.map.json",
+    "async_chunk_maps.json",
+    "async_runtime_catalog.json",
+    "async_trace.jsonl"
+  ],
+  "note": "No final-state answer snapshot is provided for this continuation."
+}

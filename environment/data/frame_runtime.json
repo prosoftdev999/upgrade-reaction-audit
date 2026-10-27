@@ -1,0 +1,388 @@
+{
+  "viewports": {
+    "doc_main": {
+      "width": 1200,
+      "height": 800
+    },
+    "doc_preview": {
+      "width": 900,
+      "height": 650
+    }
+  },
+  "layout": {
+    "host_preview": {
+      "x": 20,
+      "y": 20,
+      "width": 820,
+      "height": 600,
+      "clip": true
+    },
+    "hard_main": {
+      "x": 55,
+      "y": 35,
+      "width": 700,
+      "height": 500,
+      "clip": true
+    },
+    "hard_preview": {
+      "x": 105,
+      "y": 65,
+      "width": 460,
+      "height": 310,
+      "clip": true
+    },
+    "bp1": {
+      "x": 30,
+      "y": 25,
+      "width": 170,
+      "height": 70
+    },
+    "bm1": {
+      "x": 230,
+      "y": 35,
+      "width": 165,
+      "height": 80
+    },
+    "pp1": {
+      "x": 55,
+      "y": 45,
+      "width": 145,
+      "height": 72
+    },
+    "rp1": {
+      "x": 35,
+      "y": 285,
+      "width": 155,
+      "height": 62
+    },
+    "pm1": {
+      "x": 300,
+      "y": 245,
+      "width": 180,
+      "height": 90
+    },
+    "bm3": {
+      "x": 25,
+      "y": 395,
+      "width": 170,
+      "height": 70
+    },
+    "rm1": {
+      "x": 245,
+      "y": 390,
+      "width": 160,
+      "height": 60
+    },
+    "pm2": {
+      "x": 20,
+      "y": 20,
+      "width": 120,
+      "height": 50
+    },
+    "rm2": {
+      "x": 25,
+      "y": 78,
+      "width": 115,
+      "height": 48
+    },
+    "p6": {
+      "x": 590,
+      "y": 90,
+      "width": 160,
+      "height": 110
+    },
+    "audit_sink_decoy": {
+      "x": 600,
+      "y": 420,
+      "width": 120,
+      "height": 60
+    },
+    "observer_decoy": {
+      "x": 10,
+      "y": 550,
+      "width": 100,
+      "height": 30
+    }
+  },
+  "generations": [
+    {
+      "generation_id": "render.main.v1",
+      "observers": [
+        {
+          "name": "bridge-size-v1",
+          "kind": "resize",
+          "controller_uid": "bm3",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          },
+          "captures": [
+            {
+              "name": "portal",
+              "kind": "live_role",
+              "role": "portal-shared"
+            },
+            {
+              "name": "relay",
+              "kind": "live_role",
+              "role": "relay-shared"
+            }
+          ],
+          "shared_slot": "route_bus",
+          "dispose": "retain",
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {
+                "kind": "capture",
+                "name": "portal"
+              },
+              "name": "state",
+              "value": "rf1-size:{target_uid}:{width}x{height}:cap={captured_revision}:live={live_revision}"
+            },
+            {
+              "op": "enqueue_frame",
+              "job_key": "bridge-follow",
+              "coalesce": "replace",
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "relay"
+                  },
+                  "name": "pulse",
+                  "value": "rf1-job:{target_uid}:{width}x{height}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "portal-visibility-v1",
+          "kind": "intersection",
+          "controller_uid": "pp1",
+          "target": {
+            "kind": "uid",
+            "uid": "pp1"
+          },
+          "root": {
+            "kind": "live_role",
+            "role": "hard-preview-host"
+          },
+          "thresholds_bp": [
+            1,
+            2500,
+            5000,
+            7500
+          ],
+          "captures": [
+            {
+              "name": "bridge",
+              "kind": "live_role",
+              "role": "bridge-main"
+            }
+          ],
+          "shared_slot": "theme_bus",
+          "dispose": "retain",
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {
+                "kind": "capture",
+                "name": "bridge"
+              },
+              "name": "theme",
+              "value": "rf1-io:{target_uid}:r{ratio_bp}:b{bucket}:cap={captured_revision}:live={live_revision}"
+            },
+            {
+              "op": "enqueue_frame",
+              "job_key": "portal-follow",
+              "coalesce": "replace",
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "bridge"
+                  },
+                  "name": "status",
+                  "value": "rf1-io-job:{target_uid}:r{ratio_bp}:b{bucket}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": "render.main.v2",
+      "observers": [
+        {
+          "name": "portal-size-v2",
+          "kind": "resize",
+          "controller_uid": "pm1",
+          "target": {
+            "kind": "uid",
+            "uid": "pm1"
+          },
+          "captures": [
+            {
+              "name": "bridge",
+              "kind": "live_role",
+              "role": "bridge-main"
+            }
+          ],
+          "shared_slot": "theme_bus",
+          "dispose": "disconnect",
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {
+                "kind": "capture",
+                "name": "bridge"
+              },
+              "name": "mode",
+              "value": "rf2-size:{target_uid}:{width}x{height}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "relay-visibility-v2",
+          "kind": "intersection",
+          "controller_uid": "rp1",
+          "target": {
+            "kind": "live_role",
+            "role": "relay-shared"
+          },
+          "root": {
+            "kind": "live_role",
+            "role": "hard-main-host"
+          },
+          "thresholds_bp": [
+            1,
+            2000,
+            4000,
+            7000,
+            9000
+          ],
+          "captures": [
+            {
+              "name": "portal",
+              "kind": "live_role",
+              "role": "portal-shared"
+            }
+          ],
+          "shared_slot": "route_bus",
+          "dispose": "retain",
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {
+                "kind": "capture",
+                "name": "portal"
+              },
+              "name": "echo",
+              "value": "rf2-io:{target_uid}:r{ratio_bp}:b{bucket}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": "render.preview.v3",
+      "observers": [
+        {
+          "name": "preview-portal-size-v3",
+          "kind": "resize",
+          "controller_uid": "pp1",
+          "target": {
+            "kind": "uid",
+            "uid": "pp1"
+          },
+          "captures": [
+            {
+              "name": "relay",
+              "kind": "live_role",
+              "role": "relay-shared"
+            }
+          ],
+          "shared_slot": "theme_bus",
+          "dispose": "retain",
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {
+                "kind": "capture",
+                "name": "relay"
+              },
+              "name": "route",
+              "value": "rf3-size:{target_uid}:{width}x{height}:cap={captured_revision}:live={live_revision}"
+            }
+          ]
+        },
+        {
+          "name": "preview-bridge-visibility-v3",
+          "kind": "intersection",
+          "controller_uid": "bm1",
+          "target": {
+            "kind": "live_role",
+            "role": "bridge-main"
+          },
+          "root": {
+            "kind": "live_role",
+            "role": "hard-main-host"
+          },
+          "thresholds_bp": [
+            1,
+            1500,
+            3500,
+            6000,
+            8500
+          ],
+          "captures": [
+            {
+              "name": "portal",
+              "kind": "live_role",
+              "role": "portal-shared"
+            },
+            {
+              "name": "relay",
+              "kind": "live_role",
+              "role": "relay-shared"
+            }
+          ],
+          "shared_slot": "route_bus",
+          "dispose": "retain",
+          "actions": [
+            {
+              "op": "set_attr",
+              "target": {
+                "kind": "capture",
+                "name": "portal"
+              },
+              "name": "state",
+              "value": "rf3-io:{target_uid}:r{ratio_bp}:b{bucket}:cap={captured_revision}:live={live_revision}"
+            },
+            {
+              "op": "enqueue_frame",
+              "job_key": "preview-follow",
+              "coalesce": "keep_first",
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "relay"
+                  },
+                  "name": "armed",
+                  "value": "rf3-job:{target_uid}:r{ratio_bp}:b{bucket}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

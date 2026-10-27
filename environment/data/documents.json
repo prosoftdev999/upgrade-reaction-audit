@@ -1,0 +1,16 @@
+{
+  "documents": [
+    {
+      "document_id": "doc_main",
+      "root_uid": "root_main",
+      "registry_id": "reg_main",
+      "order": 0
+    },
+    {
+      "document_id": "doc_preview",
+      "root_uid": "root_preview",
+      "registry_id": "reg_preview",
+      "order": 1
+    }
+  ]
+}

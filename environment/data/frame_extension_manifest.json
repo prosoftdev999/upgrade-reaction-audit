@@ -1,0 +1,8 @@
+{
+  "phase": "render-frame-continuation",
+  "starts_after_seq": 417,
+  "runtime": "frame_runtime.json",
+  "stream": "frame_session.jsonl",
+  "contract": "frame_contract.md",
+  "consistency_snapshot": "final_frame_snapshot.json"
+}

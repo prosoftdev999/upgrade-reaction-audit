@@ -1,0 +1,30 @@
+artifacts = ["/app/output/reaction_ledger.json"]
+
+[task]
+name = "afterquery/upgrade-reaction-audit"
+
+[metadata]
+author_name = "Thomas Morison"
+author_email = "matiasv931026@gmail.com"
+difficulty_explanation = "The task carries one browser-session state through custom-element upgrades, retained observers and listeners, render observers, transactional HMR, and finally recovered pending callbacks from an optimized bundle. The last continuation introduces a separate discovery boundary: each pending callback is identified only by a generated bundle coordinate, which must be composed through an indexed bundle source map and a second chunk source map before it can be associated with a runtime handler. That handler must then be bound to the concrete HMR module instance whose historical lifetime contains the callback's original scheduling sequence, so stale scheduled work can execute after its owning revision has been disposed. Install-time captures and shared-object references remain fixed while role and shared-slot lookups are live at execution, and the recovered tasks use lane ordering, per-instance coalescing, and next-checkpoint scheduling for nested tasks. Their actions feed back into the same lifecycle, observer, event, layout, and HMR state already reconstructed from the preserved prefix. A final-state lookup, current-revision binding, exact-only source-map lookup, trace-export order, same-checkpoint nested-task drain, or coalescing by logical module rather than concrete instance all produce plausible but wrong ledgers. The continuation has no answer snapshot; uniqueness comes from the two source-map levels, the captured runtime catalog, historical HMR lifetimes, and the carried browser state. The dataset is synthetic, but its source-map composition, stale async closures, HMR generation lifetimes, retained registrations, event-loop checkpoints, and lifecycle side effects model a realistic frontend incident where optimized stack samples must be correlated back to hot-reloaded code. This work would typically be done by a frontend platform or browser-runtime engineer investigating lifecycle effects that appear only after a development build has hot-reloaded several generations. A focused expert should expect roughly 5-7 hours to inspect the capture, reconstruct the browser and HMR history, decode the stack provenance, implement the dependent replay, and validate competing ownership and scheduling interpretations."
+solution_explanation = "The reference replays the preserved custom-element, mutation-observer, delegated-event, render, and HMR captures exactly as before, retaining their existing consistency checks at sequences 273, 377, 417, and 502. It records the concrete install and disposal lifetime of each HMR module instance. For each recovered async sample it resolves the generated coordinate through the indexed bundle map and then the corresponding chunk map, matches the resulting original source/name to the runtime catalog, and selects the one concrete module instance of that revision alive at the sample's historical scheduling sequence. Pending work is ordered and coalesced by the async contract, drained by lane at explicit async checkpoints, and nested tasks are deferred to the next async checkpoint. Handler actions reuse the carried HMR target, shared-state, layout, reaction-frame, observer, event, and render semantics, so stale callbacks can affect later custom-element reactions. The final reaction ledger is derived entirely from solver-visible evidence; the async continuation intentionally has no final-state answer snapshot."
+verification_explanation = "The verifier reads only /app/output/reaction_ledger.json, validates the published schema and checkpoint order, and compares the full custom-element instance history and lifecycle-reaction ledger with sealed expected data. The expected ledger is produced by the reference from the solver-visible base capture and all continuations, including the two-stage source-map async provenance phase. JSON whitespace and object-key order are ignored; semantic array order defined by the contracts remains significant. Candidate code is never imported or executed and grader state remains isolated in the separate verifier container. Missing, malformed, partial, prefix-only, current-revision, wrong-source-map-bias, wrong trace-order, simplified-coalescing, same-checkpoint nested-drain, or otherwise semantically wrong ledgers receive reward 0; reward becomes 1 only when every verifier test passes."
+category = "Software"
+subcategory = "Frontend"
+tags = ["web-components", "custom-elements", "shadow-dom", "event-propagation", "render-observers", "frontend-debugging"]
+expert_time_estimate_hours = 6.0
+relevant_experience = "Professional frontend platform or design-system work involving custom elements, Shadow DOM, MutationObserver delivery, delegated events, ResizeObserver/IntersectionObserver-style scheduling, hot-module replacement graphs, Source Map v3 stack provenance, stale async callback lifetimes, shared mutable state, role/identity rebinding, cross-document adoption, and multi-queue lifecycle debugging."
+
+[verifier]
+timeout_sec = 120.0
+environment_mode = "separate"
+
+[agent]
+timeout_sec = 7200.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 4096
+storage_mb = 10240
+gpus = 0

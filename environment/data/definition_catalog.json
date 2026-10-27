@@ -1,0 +1,651 @@
+{
+  "definitions": [
+    {
+      "definition_id": "main.panel.v1",
+      "registry_id": "reg_main",
+      "local_name": "x-panel",
+      "observed_attributes": [
+        "data-mode",
+        "open"
+      ]
+    },
+    {
+      "definition_id": "preview.panel.v2",
+      "registry_id": "reg_preview",
+      "local_name": "x-panel",
+      "observed_attributes": [
+        "data-theme",
+        "open"
+      ]
+    },
+    {
+      "definition_id": "main.badge.v1",
+      "registry_id": "reg_main",
+      "local_name": "x-badge",
+      "observed_attributes": [
+        "level",
+        "tone"
+      ]
+    },
+    {
+      "definition_id": "preview.badge.v2",
+      "registry_id": "reg_preview",
+      "local_name": "x-badge",
+      "observed_attributes": [
+        "tone"
+      ]
+    },
+    {
+      "definition_id": "main.token.v3",
+      "registry_id": "reg_main",
+      "local_name": "x-token",
+      "observed_attributes": [
+        "value"
+      ]
+    },
+    {
+      "definition_id": "preview.token.v4",
+      "registry_id": "reg_preview",
+      "local_name": "x-token",
+      "observed_attributes": [
+        "value",
+        "disabled"
+      ]
+    },
+    {
+      "definition_id": "main-meter.v1",
+      "registry_id": "reg_main",
+      "local_name": "x-meter",
+      "observed_attributes": [
+        "value",
+        "max"
+      ]
+    },
+    {
+      "definition_id": "main.bridge.v5",
+      "registry_id": "reg_main",
+      "local_name": "x-bridge",
+      "observed_attributes": [
+        "peer",
+        "mode",
+        "status"
+      ],
+      "captures": [
+        {
+          "name": "peer_at_upgrade",
+          "role_from_attr": "peer"
+        }
+      ],
+      "programs": {
+        "constructor": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "peer_at_upgrade"
+            },
+            "name": "pulse",
+            "value": "boot:{uid}"
+          },
+          {
+            "op": "enqueue_microtask",
+            "job_key": "bridge-live",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "peer"
+                },
+                "name": "route",
+                "value": "boot:{uid}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:mode": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "peer_at_upgrade"
+            },
+            "name": "pulse",
+            "value": "{new_value}"
+          },
+          {
+            "op": "enqueue_microtask",
+            "job_key": "bridge-live",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "peer"
+                },
+                "name": "route",
+                "value": "{new_value}"
+              }
+            ]
+          }
+        ],
+        "adopted": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "adopt-status",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "self"
+                },
+                "name": "status",
+                "value": "adopted:{new_doc}"
+              }
+            ]
+          }
+        ],
+        "connected": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "peer_at_upgrade"
+            },
+            "name": "route",
+            "value": "connected:{uid}"
+          }
+        ]
+      }
+    },
+    {
+      "definition_id": "preview.bridge.v8",
+      "registry_id": "reg_preview",
+      "local_name": "x-bridge",
+      "observed_attributes": [
+        "peer",
+        "mode",
+        "theme",
+        "status"
+      ],
+      "captures": [
+        {
+          "name": "peer_at_upgrade",
+          "role_from_attr": "peer"
+        }
+      ],
+      "programs": {
+        "constructor": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "live_role",
+              "role_from_attr": "peer"
+            },
+            "name": "pulse",
+            "value": "{uid}"
+          },
+          {
+            "op": "enqueue_microtask",
+            "job_key": "bridge-live",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "capture",
+                  "name": "peer_at_upgrade"
+                },
+                "name": "route",
+                "value": "preview-job:{uid}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:mode": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "live_role",
+              "role_from_attr": "peer"
+            },
+            "name": "pulse",
+            "value": "{new_value}"
+          },
+          {
+            "op": "enqueue_microtask",
+            "job_key": "bridge-live",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "capture",
+                  "name": "peer_at_upgrade"
+                },
+                "name": "route",
+                "value": "{new_value}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:theme": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "theme-fanout",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "peer"
+                },
+                "name": "route",
+                "value": "{new_value}"
+              }
+            ]
+          }
+        ],
+        "adopted": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "adopt-status",
+            "coalesce": "keep_first",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "self"
+                },
+                "name": "status",
+                "value": "preview:{new_doc}"
+              }
+            ]
+          }
+        ],
+        "connected": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "live_role",
+              "role_from_attr": "peer"
+            },
+            "name": "route",
+            "value": "p-connected:{uid}"
+          }
+        ]
+      }
+    },
+    {
+      "definition_id": "main.relay.v3",
+      "registry_id": "reg_main",
+      "local_name": "x-relay",
+      "observed_attributes": [
+        "sink",
+        "pulse",
+        "route"
+      ],
+      "captures": [
+        {
+          "name": "sink_at_upgrade",
+          "role_from_attr": "sink"
+        }
+      ],
+      "programs": {
+        "attribute_changed:pulse": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "sink_at_upgrade"
+            },
+            "name": "state",
+            "value": "{new_value}"
+          },
+          {
+            "op": "enqueue_microtask",
+            "job_key": "relay-echo",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "sink"
+                },
+                "name": "echo",
+                "value": "echo:{new_value}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:route": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "relay-route",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "capture",
+                  "name": "sink_at_upgrade"
+                },
+                "name": "state",
+                "value": "{new_value}"
+              }
+            ]
+          }
+        ],
+        "connected": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "sink_at_upgrade"
+            },
+            "name": "state",
+            "value": "relay-connected:{uid}"
+          }
+        ],
+        "adopted": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "relay-adopt",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "sink"
+                },
+                "name": "echo",
+                "value": "adopt:{new_doc}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "definition_id": "preview.relay.v6",
+      "registry_id": "reg_preview",
+      "local_name": "x-relay",
+      "observed_attributes": [
+        "sink",
+        "pulse",
+        "route",
+        "armed"
+      ],
+      "captures": [
+        {
+          "name": "sink_at_upgrade",
+          "role_from_attr": "sink"
+        }
+      ],
+      "programs": {
+        "attribute_changed:pulse": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "live_role",
+              "role_from_attr": "sink"
+            },
+            "name": "state",
+            "value": "{new_value}"
+          },
+          {
+            "op": "enqueue_microtask",
+            "job_key": "relay-echo",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "capture",
+                  "name": "sink_at_upgrade"
+                },
+                "name": "echo",
+                "value": "pv-echo:{new_value}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:route": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "relay-route",
+            "coalesce": "keep_first",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "sink"
+                },
+                "name": "state",
+                "value": "{new_value}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:armed": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "sink_at_upgrade"
+            },
+            "name": "echo",
+            "value": "armed:{new_value}"
+          }
+        ],
+        "connected": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "live_role",
+              "role_from_attr": "sink"
+            },
+            "name": "state",
+            "value": "pv-connected:{uid}"
+          }
+        ],
+        "adopted": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "relay-adopt",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "capture",
+                  "name": "sink_at_upgrade"
+                },
+                "name": "echo",
+                "value": "pv-adopt:{new_doc}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "definition_id": "main.portal.v2",
+      "registry_id": "reg_main",
+      "local_name": "x-portal",
+      "observed_attributes": [
+        "target",
+        "state",
+        "echo"
+      ],
+      "captures": [
+        {
+          "name": "target_at_upgrade",
+          "role_from_attr": "target"
+        }
+      ],
+      "programs": {
+        "attribute_changed:state": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "portal-mode",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "capture",
+                  "name": "target_at_upgrade"
+                },
+                "name": "mode",
+                "value": "{new_value}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:echo": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "live_role",
+              "role_from_attr": "target"
+            },
+            "name": "status",
+            "value": "echo:{new_value}"
+          }
+        ],
+        "connected": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "target_at_upgrade"
+            },
+            "name": "status",
+            "value": "mounted:{uid}"
+          }
+        ],
+        "adopted": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "portal-adopt",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "target"
+                },
+                "name": "status",
+                "value": "portal:{new_doc}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "definition_id": "preview.portal.v7",
+      "registry_id": "reg_preview",
+      "local_name": "x-portal",
+      "observed_attributes": [
+        "target",
+        "state",
+        "echo",
+        "phase"
+      ],
+      "captures": [
+        {
+          "name": "target_at_upgrade",
+          "role_from_attr": "target"
+        }
+      ],
+      "programs": {
+        "attribute_changed:state": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "portal-mode",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "target"
+                },
+                "name": "mode",
+                "value": "{new_value}"
+              }
+            ]
+          }
+        ],
+        "attribute_changed:echo": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "capture",
+              "name": "target_at_upgrade"
+            },
+            "name": "status",
+            "value": "pv-echo:{new_value}"
+          }
+        ],
+        "attribute_changed:phase": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "portal-phase",
+            "coalesce": "keep_first",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "live_role",
+                  "role_from_attr": "target"
+                },
+                "name": "theme",
+                "value": "phase:{new_value}"
+              }
+            ]
+          }
+        ],
+        "connected": [
+          {
+            "op": "set_attr",
+            "target": {
+              "kind": "live_role",
+              "role_from_attr": "target"
+            },
+            "name": "status",
+            "value": "pv-mounted:{uid}"
+          }
+        ],
+        "adopted": [
+          {
+            "op": "enqueue_microtask",
+            "job_key": "portal-adopt",
+            "coalesce": "replace",
+            "actions": [
+              {
+                "op": "set_attr",
+                "target": {
+                  "kind": "capture",
+                  "name": "target_at_upgrade"
+                },
+                "name": "status",
+                "value": "pv-portal:{new_doc}"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

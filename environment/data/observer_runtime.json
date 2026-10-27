@@ -1,0 +1,322 @@
+{
+  "shared_slots": {
+    "route_bus": {
+      "revision": "r0",
+      "lane": "cold"
+    },
+    "theme_bus": {
+      "revision": "t0",
+      "lane": "neutral"
+    }
+  },
+  "generations": [
+    {
+      "generation_id": "audit.main.v1",
+      "observers": [
+        {
+          "name": "mode-audit",
+          "controller_uid": "bm3",
+          "observe_target": {
+            "kind": "live_role",
+            "role": "hard-main-host"
+          },
+          "subtree": true,
+          "attribute_filter": [
+            "mode",
+            "status"
+          ],
+          "captures": [
+            {
+              "name": "audit_sink",
+              "kind": "live_role",
+              "role": "audit-sink"
+            }
+          ],
+          "shared_slot": "route_bus",
+          "dispose": "retain",
+          "rules": [
+            {
+              "attributes": [
+                "mode"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g1-mode:{record_uid}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            },
+            {
+              "attributes": [
+                "status"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g1-status:{record_uid}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "portal-audit",
+          "controller_uid": "pm1",
+          "observe_target": {
+            "kind": "uid",
+            "uid": "pm1"
+          },
+          "subtree": true,
+          "attribute_filter": [
+            "state",
+            "echo"
+          ],
+          "captures": [
+            {
+              "name": "audit_sink",
+              "kind": "live_role",
+              "role": "audit-sink"
+            }
+          ],
+          "shared_slot": "theme_bus",
+          "dispose": "disconnect",
+          "rules": [
+            {
+              "attributes": [
+                "state",
+                "echo"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g1-portal:{record_name}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": "audit.main.v2",
+      "observers": [
+        {
+          "name": "relay-audit",
+          "controller_uid": "rp1",
+          "observe_target": {
+            "kind": "live_role",
+            "role": "hard-main-host"
+          },
+          "subtree": true,
+          "attribute_filter": [
+            "pulse",
+            "route"
+          ],
+          "captures": [
+            {
+              "name": "audit_sink",
+              "kind": "live_role",
+              "role": "audit-sink"
+            }
+          ],
+          "shared_slot": "route_bus",
+          "dispose": "retain",
+          "rules": [
+            {
+              "attributes": [
+                "pulse"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g2-pulse:{record_uid}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            },
+            {
+              "attributes": [
+                "route"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g2-route:{record_uid}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "portal-audit",
+          "controller_uid": "bm2",
+          "observe_target": {
+            "kind": "uid",
+            "uid": "pm1"
+          },
+          "subtree": true,
+          "attribute_filter": [
+            "state",
+            "echo"
+          ],
+          "captures": [
+            {
+              "name": "audit_sink",
+              "kind": "live_role",
+              "role": "audit-sink"
+            }
+          ],
+          "shared_slot": "theme_bus",
+          "dispose": "disconnect",
+          "rules": [
+            {
+              "attributes": [
+                "state",
+                "echo"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g2-portal:{record_name}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": "audit.preview.v3",
+      "observers": [
+        {
+          "name": "preview-bridge-audit",
+          "controller_uid": "bp1",
+          "observe_target": {
+            "kind": "live_role",
+            "role": "hard-preview-host"
+          },
+          "subtree": true,
+          "attribute_filter": [
+            "mode",
+            "status",
+            "theme"
+          ],
+          "captures": [
+            {
+              "name": "audit_sink",
+              "kind": "live_role",
+              "role": "audit-sink"
+            }
+          ],
+          "shared_slot": "route_bus",
+          "dispose": "retain",
+          "rules": [
+            {
+              "attributes": [
+                "mode",
+                "theme"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g3-ui:{record_name}:{record_uid}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            },
+            {
+              "attributes": [
+                "status"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g3-status:{record_uid}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "preview-portal-audit",
+          "controller_uid": "pp1",
+          "observe_target": {
+            "kind": "uid",
+            "uid": "pp1"
+          },
+          "subtree": true,
+          "attribute_filter": [
+            "echo",
+            "phase"
+          ],
+          "captures": [
+            {
+              "name": "audit_sink",
+              "kind": "live_role",
+              "role": "audit-sink"
+            }
+          ],
+          "shared_slot": "theme_bus",
+          "dispose": "retain",
+          "rules": [
+            {
+              "attributes": [
+                "echo",
+                "phase"
+              ],
+              "actions": [
+                {
+                  "op": "set_attr",
+                  "target": {
+                    "kind": "capture",
+                    "name": "audit_sink"
+                  },
+                  "name": "open",
+                  "value": "g3-portal:{record_name}:{record_new}:cap={captured_revision}:live={live_revision}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
